@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,8 +9,8 @@ public class BombController : MonoBehaviour
     public KeyCode inputKey = KeyCode.Space;
     public float bombFuseTime = 3f;
     public int bombAmount = 1;
-    private int bombsRemaining;
-
+    public int bombsRemaining;
+    public bool isTesting = false; // Biến kiểm soát chế độ kiểm thử
 
     [Header("Explosion")]
     public Explosion explosionPrefab;
@@ -25,17 +25,20 @@ public class BombController : MonoBehaviour
     private void OnEnable()
     {
         bombsRemaining = bombAmount;
+        //Debug.Log("Bombs remaining on enable: " + bombsRemaining);
     }
 
     private void Update()
     {
-        if(bombsRemaining > 0 && Input.GetKeyDown(inputKey))
+        // Nếu không phải đang ở chế độ kiểm thử và còn bomb, cho phép đặt bomb khi nhấn phím
+        if (!isTesting && bombsRemaining > 0 && Input.GetKeyDown(inputKey))
         {
+            //Debug.Log("Placing bomb at position: " + transform.position);
             StartCoroutine(PlaceBomb());
         }
     }
 
-    private IEnumerator PlaceBomb()
+    public IEnumerator PlaceBomb()
     {
         Vector2 position = transform.position;
         position.x = Mathf.Round(position.x);
@@ -43,6 +46,7 @@ public class BombController : MonoBehaviour
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bombsRemaining--;
+        //Debug.Log("Bomb placed. Bombs remaining: " + bombsRemaining);
 
         yield return new WaitForSeconds(bombFuseTime);
 
@@ -50,10 +54,10 @@ public class BombController : MonoBehaviour
         position.x = Mathf.Round(position.x);
         position.y = Mathf.Round(position.y);
 
-        Explosion explosion = Instantiate (explosionPrefab, position, Quaternion.identity);
+        Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
-        
+
         Explode(position, Vector2.up, explosionRadius);
         Explode(position, Vector2.down, explosionRadius);
         Explode(position, Vector2.left, explosionRadius);
@@ -61,11 +65,12 @@ public class BombController : MonoBehaviour
 
         Destroy(bomb);
         bombsRemaining++;
+        //Debug.Log("Bomb destroyed. Bombs remaining: " + bombsRemaining);
     }
 
-    private void Explode(Vector2 position, Vector2 direction, int length)
+    public void Explode(Vector2 position, Vector2 direction, int length)
     {
-        if(length <= 0)
+        if (length <= 0)
         {
             return;
         }
@@ -83,6 +88,7 @@ public class BombController : MonoBehaviour
         explosion.SetDirection(direction);
         explosion.DestroyAfter(explosionDuration);
 
+        //Debug.Log("Explosion created at position: " + position + " in direction: " + direction);
         Explode(position, direction, length - 1);
     }
 
@@ -93,8 +99,13 @@ public class BombController : MonoBehaviour
 
         if (title != null)
         {
+            //Debug.Log("Clearing destructible tile at cell: " + cell);
             Instantiate(destructiblePrefab, position, Quaternion.identity);
             destructibleTiles.SetTile(cell, null);
+        }
+        else
+        {
+            //Debug.Log("No destructible tile found at cell: " + cell);
         }
     }
 
@@ -102,11 +113,12 @@ public class BombController : MonoBehaviour
     {
         bombAmount++;
         bombsRemaining++;
+        //Debug.Log("Bomb added. Total bombs: " + bombAmount);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
         {
             other.isTrigger = false;
         }

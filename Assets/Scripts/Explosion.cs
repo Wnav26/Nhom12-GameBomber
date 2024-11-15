@@ -1,3 +1,4 @@
+﻿using System;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -17,11 +18,12 @@ public class Explosion : MonoBehaviour
     {
         float angle = Mathf.Atan2(direction.y, direction.x);
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
+        
     }
 
     public void DestroyAfter(float seconds)
     {
+        Debug.Log($"Explosion will be destroyed after: {seconds} seconds"); // Log thời gian hủy
         Destroy(gameObject, seconds);
     }
-
 }

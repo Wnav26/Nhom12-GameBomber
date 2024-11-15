@@ -29,22 +29,27 @@ public class MovementController : MonoBehaviour
     {
         if (Input.GetKey(inputUp))
         {
+            //Debug.Log("Di chuyen len.");
             SetDirection(Vector2.up, spriteRendererUp);
         }
         else if (Input.GetKey(inputDown))
         {
+            //Debug.Log("Di chuyen xuong.");
             SetDirection(Vector2.down, spriteRendererDown);
         }
         else if (Input.GetKey(inputLeft))
         {
+            //Debug.Log("Di chuyen trai.");
             SetDirection(Vector2.left, spriteRendererLeft);
         }
         else if (Input.GetKey(inputRight))
         {
+            //Debug.Log("Di chuyen phai.");
             SetDirection(Vector2.right, spriteRendererRight);
         }
         else
         {
+            //Debug.Log("Ko Di chuyen .");
             SetDirection(Vector2.zero, activeSpriteRenderer);
         }
 
@@ -83,6 +88,7 @@ public class MovementController : MonoBehaviour
 
     private void DeathSequence()
     {
+       // Debug.Log("Nguoi choi da chet.");
         enabled = false;
         GetComponent<BombController>().enabled = false;
 

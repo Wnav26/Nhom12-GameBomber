@@ -299,7 +299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6189, y: 0.6622009}
+  m_AnchoredPosition: {x: 3.6188965, y: 0.6622009}
   m_SizeDelta: {x: 48.8033, y: 45.2504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306653004
@@ -1239,7 +1239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6189, y: 0.6622009}
+  m_AnchoredPosition: {x: 3.6188965, y: 0.6622009}
   m_SizeDelta: {x: 48.8033, y: 45.2504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &873540462
@@ -1314,7 +1314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6189, y: 0.6622009}
+  m_AnchoredPosition: {x: 3.6188965, y: 0.6622009}
   m_SizeDelta: {x: 48.8033, y: 45.2504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878415635
@@ -1596,7 +1596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6189, y: 0.6622009}
+  m_AnchoredPosition: {x: 3.6188965, y: 0.6622009}
   m_SizeDelta: {x: 48.8033, y: 45.2504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248143240
@@ -6174,13 +6174,13 @@ Tilemap:
   - first: {x: -8, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: -6, y: 3, z: 0}
     second:
       serializedVersion: 2
@@ -6283,11 +6283,15 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 91
+  - m_RefCount: 90
     m_Data: {fileID: 11400000, guid: e1dfb722f50758a468164ffbfa805997, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: f8f816a39dc0cf84f9383ee01e6f69b0, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 91
+  - m_RefCount: 90
     m_Data: {fileID: 21300000, guid: b659fb4ee834d3146953c31196079a31, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 8a9ad42825a349542aa20c77c122ffb1, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 91
     m_Data:

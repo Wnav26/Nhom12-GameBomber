@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
     {
         int aliveCount = 0;
         GameObject lastAlivePlayer = null;
+        List<string> alivePlayerNames = new List<string>(); // Danh sách tên người chơi còn sống
+
+        // Ẩn tất cả hình ảnh chiến thắng trước khi kiểm tra người chơi
+        victoryImagePlayer1.SetActive(false);
+        victoryImagePlayer2.SetActive(false);
+        victoryImagePlayer3.SetActive(false);
+        victoryImagePlayer4.SetActive(false);
 
         foreach (GameObject player in players)
         {
@@ -24,10 +31,12 @@ public class GameManager : MonoBehaviour
             {
                 aliveCount++;
                 lastAlivePlayer = player; // Lưu lại người chơi cuối cùng còn sống
-                Debug.Log("Alive Player: " + player.name); // Log tên người chơi
+                alivePlayerNames.Add(player.name); // Thêm tên người chơi vào danh sách
             }
         }
 
+        // Log tên tất cả người chơi còn sống
+        Debug.Log("Alive Players: " + string.Join(", ", alivePlayerNames));
         Debug.Log("Alive Count: " + aliveCount); // Log số lượng người sống
 
         if (aliveCount == 1 && lastAlivePlayer != null)
@@ -36,17 +45,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void ShowVictoryImage(GameObject winningPlayer)
     {
         Debug.Log("Winning Player: " + winningPlayer.name); // Log tên người chiến thắng
 
-        // Ẩn tất cả hình ảnh trước khi hiển thị hình ảnh chiến thắng
-        victoryImagePlayer1.SetActive(false);
-        victoryImagePlayer2.SetActive(false);
-        victoryImagePlayer3.SetActive(false);
-        victoryImagePlayer4.SetActive(false);
-
+        // Hiển thị hình ảnh chiến thắng cho người chơi thắng
         if (winningPlayer == players[0])
         {
             victoryImagePlayer1.SetActive(true);
@@ -72,9 +75,6 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(NewRound), 3f);
     }
 
-
-
-
     private void NewRound()
     {
         // Ẩn tất cả hình ảnh chiến thắng trước khi chơi lại
@@ -87,3 +87,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
+

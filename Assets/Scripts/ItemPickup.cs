@@ -11,9 +11,10 @@ public class ItemPickup : MonoBehaviour
 
     public ItemType type;
 
-    private void OnItemPickup(GameObject player)
+    public void OnItemPickup(GameObject player)
     {
-        switch(type)
+       // Debug.Log("Nguoi choi da nhan item: " + type);
+        switch (type)
         {
             case ItemType.ExtraBomb:
                 player.GetComponent<BombController>().AddBomb();
@@ -31,7 +32,7 @@ public class ItemPickup : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") )
         {
